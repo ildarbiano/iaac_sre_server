@@ -1,21 +1,13 @@
-# This is a basic workflow to help you get started with Actions
+#----This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Lunch S3 bucket
 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#----Controls when the action will run. 
+on: workflow_dispatch           #---Allows to run this workflow manually from the Actions tab
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  #---This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -25,12 +17,34 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Проверяет/Запрашивает AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1         #--??????
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Setup настройка Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.12.8
+          
+      - name: Terraform Init (1)
+        id: init
+        run: terraform init
+        continue-on-error: true
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Terraform Validate Подтверждает                             #----как?
+        id: validate
+        run: terraform validate -no-color
+        continue-on-error: true
+        
+      - name: Terraform Plan (2)
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - name: Terraform Apply (3)
+        id: apply
+        run: terraform apply -auto-approve -no-color      #--- -auto-approve -no-color????????????????
+        continue-on-error: true
