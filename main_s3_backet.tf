@@ -1,3 +1,12 @@
+terraform {
+  backend "s3" {
+    
+    bucket = "astra-simple-web-shop"
+    region = "us-east-1"
+    key = "s3-backup/tfstate"
+  }
+}
+
 provider "aws" {
   region ="us-east-1"
 }
