@@ -10,7 +10,10 @@ jobs:
     steps:
 
     - name: Checkout Repository
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
+      
+    - name: List текущий репозиторий files и мы можем совершать над ними действия
+      run: ls -la
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
