@@ -1,5 +1,5 @@
 terraform {
-  backend "s3" {
+  backend "s3" {            #---#--создание места хранения .tfstate 
     
     bucket = "astra-simple-web-shop"
     region = "us-east-1"
