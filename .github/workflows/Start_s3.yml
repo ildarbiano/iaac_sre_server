@@ -1,5 +1,4 @@
 #----This is a basic workflow to help you get started with Actions
-
 name: Lunch S3 bucket
 
 #----Controls when the action will run. 
@@ -8,7 +7,7 @@ on: workflow_dispatch           #---Allows to run this workflow manually from th
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   #---This workflow contains a single job called "build"
-  Setting:
+  Lunch S3:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,30 +28,24 @@ jobs:
         with:
           terraform_version: 0.12.8
           
-  Initialization:
-    runs-on : ubuntu-latest
-    needs: Setting
-    steps   :     
-      - name: Terraform Init (1)
+  
+      - name: Terraform Init - Изучает
         id: init
         run: terraform init
         continue-on-error: true
 
-      - name: Terraform Validate Подтверждает                             #----как?
+      - name: Terraform Validate - Подтверждает                             #----как?
         id: validate
         run: terraform validate -no-color
         continue-on-error: true
         
-  Lunch:
-    runs-on : ubuntu-latest
-    needs: Initialization
-    steps   :   
-      - name: Terraform Plan (2)
+  
+      - name: Terraform Plan - Планирует
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
 
-      - name: Terraform Apply (3)
+      - name: Terraform Apply - Изготавливает
         id: apply
         run: terraform apply -auto-approve -no-color      #--- -auto-approve -no-color????????????????
         continue-on-error: true
