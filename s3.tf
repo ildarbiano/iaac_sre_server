@@ -16,8 +16,8 @@ resource "aws_s3_bucket" "static" {
         "ReplaceKeyPrefixWith": "documents/"
     }
 }]
-EOF
-  }*/
+EOF*/
+  }
 }
 
 #---политикa сегмента, которая делает его содержимое общедоступным
