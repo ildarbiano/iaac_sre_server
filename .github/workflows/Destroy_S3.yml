@@ -1,4 +1,4 @@
-name: Terraform Destroy
+name: Destroy S3 bucket
 
 on:
   workflow_dispatch:
