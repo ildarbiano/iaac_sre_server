@@ -1,8 +1,8 @@
 ###---конфигурация terraform и провайдеров---###
 #--создание места хранения backends .tfstate terraform {
-  backend "s3" {            
-    bucket = "astra-simple-web-shop"
-    key = "s3-backup/tfstate"
+backend "s3" {            
+  bucket = "astra-simple-web-shop"
+  key = "s3-backup/tfstate"
   }
 }
 provider "aws" {
