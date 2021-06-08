@@ -1,7 +1,7 @@
 ###---s3.tf
 #---создание ресурса с приданием ему имени и списка контроля доступа - acl
 resource "aws_s3_bucket" "static" {
-  bucket = var.bucket
+  bucket = "s3-website-html"
   acl    = "public-read"
 #  policy = aws_s3_bucket_policy.public_read   #---Действительный документ JSON политики сегмента
   website {
