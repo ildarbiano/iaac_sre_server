@@ -4,9 +4,10 @@ terraform {
   backend "s3" {            
     bucket = "astra-simple-web-shop"
     key = "s3.tfstate"
-#    region = var.region
+
   }
 }
 provider "aws" {
     profile = "default"
+    region = var.region_id
 }
