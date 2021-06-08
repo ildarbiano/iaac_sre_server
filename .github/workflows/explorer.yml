@@ -1,0 +1,25 @@
+name: Explorer
+env:
+  S3_BACKET_NAME = "s3-website-html"
+
+on:
+  push: 
+    branches: master
+#  workflow_dispatch:
+
+jobs:
+  checkout_$_explore:
+    runs-on: ubuntu-latest
+    name: Check out
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: List текущий репозиторий files и мы можем совершать над ними действия
+        run: ls -la  
+        
+      - name: Pull and Loading
+        run: cp https://github.com/ildarbiano/static_files.git s3:// ${{ S3_BACKET_NAME }}
+      
+      
+
+
