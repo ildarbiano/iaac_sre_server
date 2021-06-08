@@ -1,6 +1,4 @@
-name: Explorer
-env:
-  S3_BACKET_NAME = "s3-website-html"
+name: Explorer Lunched S3 bucket
 
 on:
   push: 
@@ -17,9 +15,17 @@ jobs:
       - name: List текущий репозиторий files и мы можем совершать над ними действия
         run: ls -la  
         
-      - name: Pull and Loading
-        run: cp https://github.com/ildarbiano/static_files.git s3:// ${{ S3_BACKET_NAME }}
-      
+      - name: Проверяет/Запрашивает AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1         
+        with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         
+              
+      - name: Pull and Loading code.html
+        run: cp https://github.com/ildarbiano/static_files.git s3://s3-website-html
+      - name: List текущий репозиторий files и мы можем совершать над ними действия
+        run: aws s3 ls s3://s3-website-html
       
 
 
