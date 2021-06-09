@@ -3,7 +3,6 @@
 terraform {
   backend "s3" {            
     bucket = "astra-simple-web-shop"
-#    region = var.aws-region
     key = "s3.tfstate"
   }
 }
