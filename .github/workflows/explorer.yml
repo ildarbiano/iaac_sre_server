@@ -24,9 +24,14 @@ jobs:
      
       - name: List s3-website-html Bucket before
         run: aws s3 ls s3://s3-website-html
+      
+      - name: Заглянем в папку
+        run:  cd ./templates
+      - name: Заглянем в папку
+        run:  ls -la
         
       - name: скопируем ка из контейнера в s3 bucket, а!
-        run: cp templates s3://s3-website-html
+        run: cp -r templates s3://s3-website-html
         
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
