@@ -31,7 +31,7 @@ jobs:
       - name: Заглянем в папку
         run:  ls templates
       - name: скопируем-ка из контейнера в s3 bucket, jpg!
-        run: aws s3 cp --recursive *.jpg s3://s3-website-html/
+        run: aws s3 cp --recursive IMG_0978.JPG s3://s3-website-html/
         
       - name: скопируем-ка из контейнера в s3 bucket, а!
         run: aws s3 cp --recursive ./templates/*.html s3://s3-website-html/
