@@ -1,8 +1,4 @@
-variable "availability_zone_names" {
-    type = string
-}
-
-variable "aws_zone_names" {
+variable "aws-region" {
     type = string
 }
 
