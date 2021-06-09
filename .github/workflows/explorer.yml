@@ -1,12 +1,12 @@
 name: Explorer Lunched S3 bucket
 
 on:
-  push: 
-    branches: master
-#  workflow_dispatch:
+  #push: 
+   # branches: master
+  workflow_dispatch:
 
 jobs:
-  checkout_$_explore:
+  checkout_and_explore:
     runs-on: ubuntu-latest
     name: Check out
     steps:
@@ -20,11 +20,20 @@ jobs:
         with:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         
-              
-      - name: Pull and Loading code.html
-        run: cp https://github.com/ildarbiano/static_files.git s3://s3-website-html
-      - name: List текущий репозиторий files и мы можем совершать над ними действия
+         aws-region:  "us-east-1"
+     
+      - name: List s3-website-html Bucket before
+        run: aws s3 ls s3://s3-website-html
+      
+#      - name: Заглянем в папку
+#        run:  cd ./templates/
+#      - name: Заглянем в папку
+#        run:  ls -la
+        
+      - name: скопируем-ка из контейнера в s3 bucket, а!
+        run: aws s3 cp --recursive ./templates/*.html s3://s3-website-html
+        
+      - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
       
 
