@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkout_$_explore:
+  checkout_and_explore:
     runs-on: ubuntu-latest
     name: Check out
     steps:
