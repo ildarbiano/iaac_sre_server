@@ -8,28 +8,33 @@ on:
 jobs:
   checkout_and_explore:
     runs-on: ubuntu-latest
-    name: Check out
+    name: Заходим и осматриваемся
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: List текущий репозиторий files и мы можем совершать над ними действия
         run: ls -la  
+      - name: Заглянем в папку контейнера репозитория
+        run:  ls templates  
         
       - name: Проверяет/Запрашивает AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1         
         with:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region:  "us-east-1"
-#         aws-region: ${{ var.aws_zone_names }}
+#        aws-region:  "us-east-1"
+         aws-region: var.aws_zone_names
      
-      - name: List s3-website-html Bucket before
+      - name: List s3-website-html Bucket что я положил туда вручную!?
         run: aws s3 ls s3://s3-website-html
       
-#      - name: Заглянем в папку
-#        run:  cd ./templates/
-      - name: Заглянем в папку
-        run:  ls templates
+      
+  Remove_data:
+    runs-on: ubuntu-latest
+    needs: checkout_and_explore
+    name: Перемещаем данные
+    steps:        
+        
       - name: скопируем-ка из контейнера в s3 bucket, jpg!
         run: aws s3 cp --recursive IMG_0978.JPG s3://s3-website-html/
         
