@@ -27,11 +27,13 @@ jobs:
       
 #      - name: Заглянем в папку
 #        run:  cd ./templates/
-#      - name: Заглянем в папку
-#        run:  ls -la
+      - name: Заглянем в папку
+        run:  ls templates
+      - name: скопируем-ка из контейнера в s3 bucket, jpg!
+        run: aws s3 cp -r *.jpg s3://s3-website-html/
         
       - name: скопируем-ка из контейнера в s3 bucket, а!
-        run: aws s3 cp --recursive ./templates/*.html s3://s3-website-html
+        run: aws s3 cp --recursive ./templates/*.html s3://s3-website-html/
         
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
