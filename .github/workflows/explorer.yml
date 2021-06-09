@@ -20,11 +20,9 @@ jobs:
         with:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         
-              
-      - name: Pull and Loading code.html
-        run: cp https://github.com/ildarbiano/static_files.git s3://s3-website-html
-      - name: List текущий репозиторий files и мы можем совершать над ними действия
+       
+   
+      - name: List s3-website-html Bucket
         run: aws s3 ls s3://s3-website-html
       
 
