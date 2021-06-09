@@ -11,5 +11,5 @@ terraform {
 */
 provider "aws" {
   profile = "default"
-  region  = var.availability_zone_names
+  region  = var.aws-region
 }
