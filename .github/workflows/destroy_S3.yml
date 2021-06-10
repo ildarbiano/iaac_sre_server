@@ -22,11 +22,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
  
-    - name: List s3-website-html Bucket before
-      run: aws s3 ls s3://s3-website-htm
+    - name: List Bucket before cleaning
+      run: aws s3 ls s3://s3-website-html
     - name: Очистка s3 bucket от данных
       run: aws s3 rm s3://s3-website-html/ --recursive
-    - name: List s3-website-html Bucket after
+    - name: List Bucket after that
       run: aws s3 ls s3://s3-website-html
       
     - name: Setup Terraform
