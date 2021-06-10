@@ -37,11 +37,16 @@ jobs:
       run: terraform validate -no-color
       continue-on-error: true
 
+    - name: Очистка s3 bucket от данных
+      run: aws s3 rm s3://s3-website-html/ --recursive
+    - name: List s3-website-html Bucket after
+      run: aws s3 ls s3://s3-website-html
+        
+        
     - name: Terraform Plan
       id: plan
       run: terraform plan -no-color
       continue-on-error: true
-
 
     - name: Terraform Destroy
       id: Destroy
