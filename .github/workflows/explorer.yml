@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Заходим и осматриваемся
     steps:
-      - name: Checkout
+      - name: Checkout Репозиторий
         uses: actions/checkout@v2
       - name: List текущий репозиторий files и мы можем совершать над ними действия
         run: ls -la  
@@ -36,15 +36,20 @@ jobs:
     name: Перемещаем данные
     steps:        
         
-      - name: скопируем-ка из контейнера в s3 bucket, jpg!
-        run: aws s3 cp --recursive /home/runner/work/static_files/static_files/IMG_0978.JPG s3://s3-website-html
+      - name: load-скопируем-ка из контейнера в s3 bucket, jpg!
+        run: aws s3 cp /home/runner/work/static_files/static_files/*.JPG s3://s3-website-html/ --recursive 
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
         
       - name: скопируем-ка из контейнера в s3 bucket, а!
-        run: aws s3 cp --recursive /home/runner/work/static_files/static_files/templates/*.html s3://s3-website-html
+        run: aws s3 cp /home/runner/work/static_files/static_files/templates/*.html s3://s3-website-html/ --recursive
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
+        
+      - name: download
+        run: aws s3 cp s3://s3-website-html/*.jpg 
+      - name: Проверка результатов загрузки
+        run: aws s3 ls s3://s3-website-html /home/runner/work/static_files/static_files/
       
 
 
