@@ -6,32 +6,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkout_and_explore:
-    runs-on: ubuntu-latest
-    name: Заходим и осматриваемся
-    steps:     
-      - name: Checkout Репозиторий
-        uses: actions/checkout@v2
-      - name: Запрашивает AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1         
-        with:
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region: ${{ secrets.AWS_REGION }}   
+#  checkout_and_explore:
+#    runs-on: ubuntu-latest
+#    name: Заходим и осматриваемся
+#    steps:     
+#      - name: Checkout Репозиторий
+#        uses: actions/checkout@v2
+#      - name: Запрашивает AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1         
+#        with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: ${{ secrets.AWS_REGION }}   
       
-      - name: List текущий репозиторий files и мы можем совершать над ними действия
-        run: ls -la  
-      - name: Заглянем в папку контейнера репозитория
-        run:  ls templates
-      - name: Запрашиваем полный путь
-        run:  pwd
-      - name: List s3-website-html Bucket что я положил туда вручную!?
-        run: aws s3 ls s3://s3-website-html
+#      - name: List текущий репозиторий files и мы можем совершать над ними действия
+#        run: ls -la  
+#      - name: Заглянем в папку контейнера репозитория
+#        run:  ls templates
+#      - name: Запрашиваем полный путь
+#        run:  pwd
+#      - name: List s3-website-html Bucket что я положил туда вручную!?
+#        run: aws s3 ls s3://s3-website-html
       
       
   Remove_data:
     runs-on: ubuntu-latest
-    needs: checkout_and_explore
+ #   needs: checkout_and_explore
     name: Перемещаем данные
     steps:        
       - name: Checkout Репозиторий
@@ -45,8 +45,8 @@ jobs:
          
 #      - name: load-скопируем-ка из контейнера в s3 bucket, jpg!
 #        run: aws s3 cp /home/runner/work/static_files/static_files/*.JPG s3://s3-website-html/ --recursive 
-      - name: List s3-website-html Bucket after
-        run: aws s3 ls s3://s3-website-html
+#      - name: List s3-website-html Bucket after
+#        run: aws s3 ls s3://s3-website-html
         
 #      - name: скопируем-ка из контейнера в s3 bucket, а!
 #        run: aws s3 cp /home/runner/work/static_files/static_files/templates/*.html s3://s3-website-html/ --recursive
@@ -54,7 +54,7 @@ jobs:
         run: aws s3 ls s3://s3-website-html
         
       - name: download
-        run: aws s3 cp s3://s3-website-html/*.jpg /home/runner/work/static_files/static_files/
+        run: aws s3 cp s3://s3-website-html/2021.JPG /home/runner/work/static_files/static_files/
       - name: List текущий репозиторий files и мы можем совершать над ними действия
         run: ls -la  
       
