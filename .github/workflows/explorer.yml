@@ -43,8 +43,8 @@ jobs:
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: ${{ secrets.AWS_REGION }}
          
-      - name: load-скопируем-ка из контейнера в s3 bucket, jpg!
-        run: aws s3 cp /home/runner/work/static_files/static_files/*.JPG s3://s3-website-html/ --recursive 
+#      - name: load-скопируем-ка из контейнера в s3 bucket, jpg!
+#        run: aws s3 cp /home/runner/work/static_files/static_files/*.JPG s3://s3-website-html/ --recursive 
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
         
@@ -54,9 +54,9 @@ jobs:
         run: aws s3 ls s3://s3-website-html
         
       - name: download
-        run: aws s3 cp s3://s3-website-html/*.jpg 
-      - name: Проверка результатов загрузки
-        run: aws s3 ls s3://s3-website-html /home/runner/work/static_files/static_files/
+        run: aws s3 cp s3://s3-website-html/*.jpg /home/runner/work/static_files/static_files/
+      - name: List текущий репозиторий files и мы можем совершать над ними действия
+        run: ls -la  
       
 
 
