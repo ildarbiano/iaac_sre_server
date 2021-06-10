@@ -74,3 +74,10 @@ jobs:
      
       - name: List s3-website-html Bucket что я положил туда вручную!?
         run: aws s3 ls s3://s3-website-html
+      - name: отобразим все экспортированные переменные окружения в текущей оболочки
+        run: export -p
+      
+      - name: Terraform Output
+        id: outputs
+        run: terraform output -no-color
+        continue-on-error: true
