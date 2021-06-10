@@ -48,13 +48,13 @@ jobs:
 #      - name: List s3-website-html Bucket after
 #        run: aws s3 ls s3://s3-website-html
         
-#      - name: скопируем-ка из контейнера в s3 bucket, а!
-#        run: aws s3 cp /home/runner/work/static_files/static_files/templates/*.html s3://s3-website-html/ --recursive
+      - name: load Prefix скопируем-ка из контейнера в s3 bucket, а!
+        run: aws s3 cp /home/runner/work/static_files/static_files/templates/ s3://s3-website-html/ --recursive
       - name: List s3-website-html Bucket after
         run: aws s3 ls s3://s3-website-html
         
       - name: download
-        run: aws s3 cp s3://s3-website-html/2021.JPG /home/runner/work/static_files/static_files/
+        run: aws s3 cp s3://s3-website-html/3Capture.JPG /home/runner/work/static_files/static_files/
       - name: List текущий репозиторий files и мы можем совершать над ними действия
         run: ls -la  
       
