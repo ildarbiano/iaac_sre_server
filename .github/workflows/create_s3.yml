@@ -77,6 +77,10 @@ jobs:
       - name: отобразим все экспортированные переменные окружения в текущей оболочки
         run: export -p
       
+      - name: Regonfigure backend
+        id: init
+        run: terraform init -reconfigure
+        continue-on-error: true  
       - name: Terraform Output
         id: outputs
         run: terraform output -no-color
