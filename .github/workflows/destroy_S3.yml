@@ -21,7 +21,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-
+ 
+    - name: List s3-website-html Bucket before
+      run: aws s3 ls s3://s3-website-htm
+    - name: Очистка s3 bucket от данных
+      run: aws s3 rm s3://s3-website-html/ --recursive
+    - name: List s3-website-html Bucket after
+      run: aws s3 ls s3://s3-website-html
+      
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
@@ -35,14 +42,8 @@ jobs:
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
-      continue-on-error: true
-
-    - name: Очистка s3 bucket от данных
-      run: aws s3 rm s3://s3-website-html/ --recursive
-    - name: List s3-website-html Bucket after
-      run: aws s3 ls s3://s3-website-html
-        
-        
+      continue-on-error: true 
+     
     - name: Terraform Plan
       id: plan
       run: terraform plan -no-color
