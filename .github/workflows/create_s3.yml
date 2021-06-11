@@ -81,7 +81,7 @@ jobs:
         id: init
         run: terraform init -reconfigure
         continue-on-error: true  
-      - name: Terraform Output
-        id: outputs
-        run: terraform output -no-color
+      - name: Terraform States
+        id: state
+        run: terraform state list
         continue-on-error: true
