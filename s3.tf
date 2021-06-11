@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "static" {
         "AWS": "*"
       },
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.bucket_name}/templates/*"
+      "Resource": "arn:aws:s3:::${var.bucket_name}/*"
     }
   ]
 }
