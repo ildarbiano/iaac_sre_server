@@ -79,7 +79,7 @@ jobs:
  #       continue-on-error: true
   Remove_data:
     runs-on: ubuntu-latest
- #   needs: checkout_and_explore
+    needs: Lunch_S3_bucket
     name: Загрузка S3 bucket
     steps:        
       - name: Checkout Репозиторий of Default
