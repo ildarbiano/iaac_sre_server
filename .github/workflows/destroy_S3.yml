@@ -5,7 +5,7 @@ on:
 
 jobs:
   terraform-actions:
-    name: Destroy-S3-bucket
+    name: Закрытие и уборка
     runs-on: ubuntu-latest
     steps:
 
