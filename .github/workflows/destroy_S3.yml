@@ -1,4 +1,4 @@
-name: Destroy_S3_bucket
+name: Destroy S3 bucket
 
 on:
   workflow_dispatch:
