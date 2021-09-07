@@ -1,5 +1,5 @@
 resource "aws_security_group" "linux_web_server" {
-  name        = "linux_web_security_group"
+  name        = "terraform_LS_security_group"
   description = "Allow TLS inbound traffic"
   # vpc_id      = aws_vpc.main.id - #we can commenting because will be Default vpc-2472c659
 
@@ -24,6 +24,6 @@ resource "aws_security_group" "linux_web_server" {
   }
 
   tags = {
-    Name = "Linux Serv SG"    # Name of Security Group because it in this resourse
+    Name = "terraform LS SG"    # Name of Security Group because it in this resourse
   }
 }
